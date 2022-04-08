@@ -1,5 +1,5 @@
 import 'package:get/get_connect/connect.dart';
-import 'package:tinder/app/data/person.dart';
+import '../../../data/person.dart';
 
 class HomeProvider extends GetConnect {
   @override

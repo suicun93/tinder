@@ -19,9 +19,12 @@ class HomeView extends GetView<HomeController> {
         backgroundColor: primaryColor,
         centerTitle: true,
         leading: const Icon(Icons.home),
-        actions: const [
-          Icon(CupertinoIcons.heart_fill),
-          SizedBox(width: 15),
+        actions: [
+          InkWell(
+            child: const Icon(CupertinoIcons.heart_fill),
+            onTap: () => controller.favoriteListClicked(),
+          ),
+          const SizedBox(width: 15),
         ],
       ),
       body: Obx(

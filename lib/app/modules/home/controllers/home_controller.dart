@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import '../../../common/const.dart';
 import '../../../common/my_get_controller.dart';
 import '../../../data/person.dart';
+import '../../../dom/database_helper.dart';
+import '../../../routes/app_pages.dart';
 import '../providers/home_provider.dart';
 
 class HomeController extends MyGetxController<HomeProvider> {
@@ -42,7 +44,7 @@ class HomeController extends MyGetxController<HomeProvider> {
       }
 
       people.add(result.body!.persons!.first);
-      print('Loaded 1 more person to list');
+      // print('Loaded 1 more person to list');
     } catch (e) {
       showSnackBar('Load Person failed');
     }
@@ -65,7 +67,12 @@ class HomeController extends MyGetxController<HomeProvider> {
     angel.value = 30 * x / Get.width;
   }
 
-  void like(Person currentPerson) {
-    showSnackBar('Liked');
+  Future<void> like(Person currentPerson) async {
+    await DatabaseHelper.instance.save(currentPerson);
+    showSnackBar('Liked ${currentPerson.name?.fullName ?? ''}');
+  }
+
+  void favoriteListClicked() {
+    Get.toNamed(Routes.favoritePeople);
   }
 }

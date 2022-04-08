@@ -34,9 +34,18 @@ dependencies:
   flutter:
     sdk: flutter
 
-dev_dependencies: 
+  # Database
+  sqflite:
+
+  # Patch data from database to object
+  path_provider:
+
+  # Get image and save with base64 format
+  http:
+
+dev_dependencies:
   flutter_lints: ^1.0.0
-  flutter_test: 
+  flutter_test:
     sdk: flutter
   # Change icon
   flutter_launcher_icons: ^0.9.1
