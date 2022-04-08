@@ -51,6 +51,15 @@ class HomeController extends MyGetxController<HomeProvider> {
   }
 
   void onPanEnd(DragEndDetails details) {
+    // If |dx| < 100, do nothing
+    if (position.value.dx < 100 && position.value.dx > -100) {
+      // Reset position
+      position.value = Offset.zero;
+      angel.value = 0;
+      return;
+    }
+
+    // If |dx| > 100, do something
     // Check like/dislike
     final Person currentPerson = people.removeAt(0);
     if (position.value.dx >= 100) {
