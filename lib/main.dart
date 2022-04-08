@@ -50,7 +50,7 @@ void main() {
       color: primaryColor,
       title: 'Tinder',
       debugShowCheckedModeBanner: false,
-      initialRoute: AppPages.INITIAL,
+      initialRoute: AppPages.initial,
       getPages: AppPages.routes,
     ),
   );

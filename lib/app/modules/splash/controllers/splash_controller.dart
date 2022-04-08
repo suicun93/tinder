@@ -17,7 +17,7 @@ class SplashController extends GetxController {
   }
 
   login() async {
-    Get.offAndToNamed(Routes.HOME);
+    Get.offAndToNamed(Routes.home);
   }
 
   @override
