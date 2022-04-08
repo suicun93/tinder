@@ -40,85 +40,81 @@ class HomeView extends GetView<HomeController> {
               ..translate(Offset.zero.dx, Offset.zero.dy)
               ..rotateZ(angle)
               ..translate(-Offset.zero.dx, -Offset.zero.dy);
-            return Padding(
+            return ListView(
               padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 30, 0, 20),
-                    child: Stack(
-                      children: [
-                        // Load 1 more person ready to show before swipe
-                        AspectRatio(
-                          aspectRatio: 1,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(8),
-                            child: MyImage(
-                                link: controller.people[1].picture!.large!),
-                          ),
+              children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 30, 0, 20),
+                  child: Stack(
+                    children: [
+                      // Load 1 more person ready to show before swipe
+                      AspectRatio(
+                        aspectRatio: 1,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(8),
+                          child: MyImage(
+                              link: controller.people[1].picture!.large!),
                         ),
-                        // Swipe
-                        GestureDetector(
-                          onPanStart: (details) {},
-                          onPanUpdate: (details) =>
-                              controller.onPanUpdate(details),
-                          onPanEnd: (details) => controller.onPanEnd(details),
-                          child: AnimatedContainer(
-                            curve: Curves.easeInOut,
-                            duration: 0.milliseconds,
-                            transform: rotatedMatrix
-                              ..translate(
-                                controller.position.value.dx,
-                                controller.position.value.dy,
-                              ),
-                            child: AspectRatio(
-                              aspectRatio: 1,
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(8),
-                                child: MyImage(link: person.picture!.large!),
-                              ),
+                      ),
+                      // Swipe
+                      GestureDetector(
+                        onPanStart: (details) {},
+                        onPanUpdate: (details) =>
+                            controller.onPanUpdate(details),
+                        onPanEnd: (details) => controller.onPanEnd(details),
+                        child: AnimatedContainer(
+                          curve: Curves.easeInOut,
+                          duration: 0.milliseconds,
+                          transform: rotatedMatrix
+                            ..translate(
+                              controller.position.value.dx,
+                              controller.position.value.dy,
+                            ),
+                          child: AspectRatio(
+                            aspectRatio: 1,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(8),
+                              child: MyImage(link: person.picture!.large!),
                             ),
                           ),
                         ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      bottom: 15,
-                    ),
-                    child: Text(
-                      '${person.name?.fullName}, ${person.dob?.age}',
-                      style: const TextStyle(
-                        fontSize: 27,
-                        fontWeight: FontWeight.bold,
                       ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    bottom: 15,
+                  ),
+                  child: Text(
+                    '${person.name?.fullName}, ${person.dob?.age}',
+                    style: const TextStyle(
+                      fontSize: 27,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                  ..._informationView(
-                    title: 'Distance',
-                    content: '${person.location?.distanceTo()} km',
-                    icon: Icons.social_distance_outlined,
-                  ),
-                  ..._informationView(
-                    title: 'Location',
-                    content: '${person.location?.fullLocation}',
-                    icon: Icons.location_on_outlined,
-                  ),
-                  ..._informationView(
-                    title: 'Gender',
-                    content: '${person.gender}'.capitalizeFirst!,
-                    icon: Icons.male,
-                  ),
-                  ..._informationView(
-                    title: 'Phone',
-                    content: '${person.phone}',
-                    icon: Icons.phone,
-                  ),
-                ],
-              ),
+                ),
+                ..._informationView(
+                  title: 'Distance',
+                  content: '${person.location?.distanceTo()} km',
+                  icon: Icons.social_distance_outlined,
+                ),
+                ..._informationView(
+                  title: 'Location',
+                  content: '${person.location?.fullLocation}',
+                  icon: Icons.location_on_outlined,
+                ),
+                ..._informationView(
+                  title: 'Gender',
+                  content: '${person.gender}'.capitalizeFirst!,
+                  icon: Icons.male,
+                ),
+                ..._informationView(
+                  title: 'Phone',
+                  content: '${person.phone}',
+                  icon: Icons.phone,
+                ),
+              ],
             );
           }
         },
