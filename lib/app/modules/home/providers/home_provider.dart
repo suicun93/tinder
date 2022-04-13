@@ -1,5 +1,6 @@
 import 'package:get/get_connect/connect.dart';
 import '../../../data/person.dart';
+import '../../../dom/database_helper.dart';
 
 class HomeProvider extends GetConnect {
   @override
@@ -12,5 +13,9 @@ class HomeProvider extends GetConnect {
     return get(
       'api',
     );
+  }
+
+  Future<void> saveToFavoriteList(Person currentPerson) {
+    return DatabaseHelper.instance.save(currentPerson);
   }
 }

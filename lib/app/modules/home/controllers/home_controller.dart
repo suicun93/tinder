@@ -77,7 +77,7 @@ class HomeController extends MyGetxController<HomeProvider> {
   }
 
   Future<void> like(Person currentPerson) async {
-    await DatabaseHelper.instance.save(currentPerson);
+    await provider?.saveToFavoriteList(currentPerson);
     showSnackBar('Liked ${currentPerson.name?.fullName ?? ''}');
   }
 
